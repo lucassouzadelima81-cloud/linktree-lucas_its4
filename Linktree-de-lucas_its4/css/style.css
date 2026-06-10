@@ -1,0 +1,98 @@
+/* O :root é onde definimos as "variáveis" do CSS. Em vez de escrever a cor brown ou o código #f3f4f6 várias vezes, nós criamos um apelido para eles. */
+:root {
+    --primary-color: #D2B48C;
+    --bg-color: #f3f4f6;
+    --text-color: #1a1a1a;
+    --white: #f0f8ff;
+    --transition: 0.3s ease;
+    --shadow-color: #8B4513;
+}
+
+/* reset da pagina */
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /* ATUALIZAÇÃO: Garante que o fundo cubra a tela toda mesmo se o conteúdo crescer */
+    background: linear-gradient(135deg, #e0e0e0 0%, #f3f4f6 100%);
+    padding: 20px;
+    /* ATUALIZAÇÃO: Evita que o conteúdo encoste nas bordas do celular */
+}
+
+.app {
+    display: flex;
+    /* deixa um, item do lado do outro */
+    flex-direction: column;
+    gap: 72px;
+    /* espaçamento entre os itens */
+    width: 100%;
+    max-width: 400px;
+
+    & .perfil {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+        align-items: center;
+
+        & img {
+            width: clamp(180px, 50vw, 250px);
+            /* ATUALIZAÇÃO: A imagem agora diminui proporcionalmente em telas pequenas */
+            height: auto;
+            /* ATUALIZAÇÃO: Mantém a proporção da imagem ao redimensionar */
+            aspect-ratio: 1 / 1;
+            /* ATUALIZAÇÃO: Garante que a imagem seja um círculo perfeito */
+            border-radius: 100%;
+            object-fit: cover;
+            border: 4px solid var(--white);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+    }
+
+    & .btns {
+        display: flex;
+        flex-direction: column;
+        gap: 17px;
+
+        & a {
+            text-decoration: none;
+            background-color: var(--primary-color);
+            padding: 20px;
+            border-radius: 100px;
+            color: #4a3728;
+            text-align: center;
+            font-size: clamp(18px, 5vw, 24px);
+            /* ATUALIZAÇÃO: O texto diminui em celulares para não quebrar a linha */
+            border: 2px solid #000;
+            box-shadow: 4px 4px 0 #000;
+            transition: .3s;
+            outline: none;
+            /* ATUALIZAÇÃO: Remove o contorno padrão para aplicar um personalizado abaixo */
+        }
+
+        & a:hover {
+            background-color: #C1A174;
+            transform: translateX(4px) translateY(4px);
+            box-shadow: 0px 0px 0 #000;
+        }
+
+        /* ATUALIZAÇÃO: Estilo para navegação via teclado */
+        & a:focus-visible {
+            outline: 3px solid #8B4513;
+            outline-offset: 4px;
+        }
+
+        /* ATUALIZAÇÃO: Feedback visual ao clicar (Sensação de clique real) */
+        & a:active {
+            transform: scale(0.98);
+        }
+    }
+}
